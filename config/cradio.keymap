@@ -85,18 +85,18 @@
 
         tri_layer {
             bindings = <
-        //╭─────────────┬─────────────┬───────────────────────────┬────────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│PROFILE0     │PROFILE1     │PROFILE2     │PROFILE3     │PROFILE4    │   │          │          │          │          │          │
-          &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4       &trans     &trans     &trans     &trans     &trans
-        //├─────────────┼─────────────┼─────────────┼─────────────┼────────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|             │             │             │             │            │   │          │          │          │          │          |
-            &trans        &trans        &trans        &trans       &trans            &trans     &trans     &trans     &trans     &trans
-        //├─────────────┼─────────────┼─────────────┼─────────────┼────────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│BOOTLOADER   │   RESET     │             │             │ CLEAR BT   │   │ CLEAR BT │          │          │  RESET   │BOOTLOADER│
-          &bootloader    &sys_reset     &trans        &trans        &bt BT_CLR      &bt BT_CLR  &trans     &trans    &sys_reset &bootloader
-        //╰─────────────┴─────────────┴─────────────┼─────────────┼────────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+        //╭─────────────┬─────────────┬───────────────────────────┬────────────╮   ╭────────────┬────────────┬──────────────┬────────────┬────────────╮
+        //│PROFILE0     │PROFILE1     │PROFILE2     │PROFILE3     │PROFILE4    │   │ DISC BT0   │ DISC BT1   │ DISC BT2     │ DISC BT3   │ DISC BT4   │
+          &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4     &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4
+        //├─────────────┼─────────────┼─────────────┼─────────────┼────────────┤   ├────────────┼────────────┼──────────────┼────────────┼────────────┤
+        //|             │             │             │             │            │   │ CLEAR BT   │            │              │            │            |
+            &trans        &trans        &trans        &trans       &trans           &bt BT_CLR    &trans       &trans         &trans       &trans
+        //├─────────────┼─────────────┼─────────────┼─────────────┼────────────┤   ├────────────┼────────────┼──────────────┼────────────┼────────────┤
+        //│BOOTLOADER   │   RESET     │ CLEAR ALL BT│             │            │   │            │            │CLEAR ALL BT  │  RESET     │BOOTLOADER  │
+          &bootloader    &sys_reset    &bt BT_CLR_ALL &trans        &trans           &trans       &trans      &bt BT_CLR_ALL &sys_reset   &bootloader
+        //╰─────────────┴─────────────┴─────────────┼─────────────┼────────────┤   ├────────────┼────────────┼──────────────┴────────────┴────────────╯
                                                       &trans        &trans              &trans     &trans
-        //                                          ╰─────────────┴────────────╯    ╰──────────┴──────────╯
+        //                                          ╰─────────────┴────────────╯   ╰────────────┴────────────╯
             >;
         };
     };
